@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+            text-align: center;
+            background-color: rgb(0, 3, 34);
+        }
+
+        .counter{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .title{
+            color: rgb(0, 255, 136);
+            font-weight: 200;
+            font-size: 4em;
+            word-spacing: -15px;
+        }
+
+        .time{
+            font-size: 6em;
+            font-weight: 900;
+            color: turquoise;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="counter">
+        <div><h1 class="title">До Дня Конституции осталось</h1></div> <br>
+        <div class="time">
+            <span class="days"></span><span>дн</span> :
+            <span class="hours"></span><span>ч</span> :
+            <span class="minutes"></span><span>мин</span> :
+            <span class="seconds"></span><span>сек</span>
+        </div>
+    </div>
+
+    <script>
+        let date = new Date('Dec 8 2021 00:00:00');
+
+        function count() {
+            let now = new Date();
+            gap = date - now;
+            
+            let days = Math.floor(gap / 1000 / 60 / 60 / 24);
+            let hours = Math.floor(gap / 1000 / 60 / 60) % 24;
+            let minutes = Math.floor(gap / 1000 / 60) % 60;
+            let seconds = Math.floor(gap / 1000 ) % 60;
+            
+            document.querySelector('.days').textContent = days<10?'0'+days:days;
+            document.querySelector('.hours').textContent = hours<10?'0'+hours:hours;
+            document.querySelector('.minutes').textContent = minutes<10?'0'+minutes:minutes;
+            document.querySelector('.seconds').textContent = seconds<10?'0'+seconds:seconds;
+            if (gap<0){
+                document.querySelector('.time').textContent = 'Поздравляю с Днем Конституции!';
+            }
+        }
+        setInterval(count, 1000);
+
+    </script>
+</body>
+</html>
